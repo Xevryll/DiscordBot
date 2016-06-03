@@ -1,11 +1,26 @@
-import java.awt.image.BufferedImage;
-import java.util.concurrent.ExecutionException;
-
+import Commands.AddAdminCommand;
+import Commands.AvatarCommand;
+import Commands.ButtCommand;
+import Commands.ChangeNameCommand;
+import Commands.DickCommand;
+import Commands.InfoOnCommand;
+import Commands.KysCommand;
+import Commands.MathCommand;
+import Commands.MessageStatistics;
+import Commands.MuteCommand;
+import Commands.PissOffCommand;
+import Commands.RandomNumberCommand;
+import Commands.SayCommand;
+import Commands.SkuCommand;
+import Commands.SmellCommand;
+import Commands.StopCommand;
+import Listeners.PrivateMessageListener;
+import Memes.Memecatch;
+import Permissions.UsersList;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.Javacord;
 import de.btobastian.javacord.entities.Channel;
 import de.btobastian.javacord.entities.Server;
-import de.btobastian.javacord.entities.User;
 
 public class Main {
 
@@ -14,7 +29,7 @@ public class Main {
 	public static long startTime;
 	
 	public static void main(String args[]) {
-		String token = "gtf";
+		String token = "MTg1OTEyMTI4MzU4NzExMjk3.CjN-2g.XrJ-7zfDfe3h9w2_dfv7phSAK4Q";
 		
 		startTime = System.currentTimeMillis();
 		
@@ -38,7 +53,22 @@ public class Main {
 						System.out.println(c.getName());
 					}
 				}
-				api.registerListener(new Messages());
+				api.registerListener(new AddAdminCommand());
+				api.registerListener(new AvatarCommand());
+				api.registerListener(new ButtCommand());
+				api.registerListener(new ChangeNameCommand());
+				api.registerListener(new DickCommand());
+				api.registerListener(new InfoOnCommand());
+				api.registerListener(new KysCommand());
+				api.registerListener(new MathCommand());
+				api.registerListener(new MessageStatistics());
+				api.registerListener(new MuteCommand());
+				api.registerListener(new PissOffCommand());
+				api.registerListener(new RandomNumberCommand());
+				api.registerListener(new SayCommand());
+				api.registerListener(new SkuCommand());
+				api.registerListener(new SmellCommand());
+				api.registerListener(new StopCommand());
 				api.registerListener(new PrivateMessageListener());
 				
 			}
@@ -50,17 +80,5 @@ public class Main {
 		});
 	}
 	
-	public static void avatarShit(User user) {
-		try {
-			BufferedImage av = user.getAvatar().get();
-			Exception ex = api.updateAvatar(av).get();
-			if(ex != null) {
-				ex.printStackTrace();
-			}
-		} catch (InterruptedException | ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+	
 }
