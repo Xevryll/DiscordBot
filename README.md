@@ -1,4 +1,4 @@
-## YUUKI
+## Yuuki Bot
 
 # DiscordBot
 Fancy Discord Bot using JavaCord
