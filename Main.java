@@ -29,7 +29,7 @@ public class Main {
 	public static long startTime;
 	
 	public static void main(String args[]) {
-		String token = "MTg1OTEyMTI4MzU4NzExMjk3.CjN-2g.XrJ-7zfDfe3h9w2_dfv7phSAK4Q";
+		String token = "gtf";
 		
 		startTime = System.currentTimeMillis();
 		
