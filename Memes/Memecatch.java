@@ -3,7 +3,9 @@ import de.btobastian.javacord.listener.Listener;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,7 +16,7 @@ public class Memecatch implements Listener {
 	public static HashMap<String, File> imageCache = new HashMap<>();
 	public static HashMap<String, String> gifCache = new HashMap<>();
 
-	public synchronized void cacheImage(String url, String extension, String name) {
+	public synchronized static void cacheImage(String url, String extension, String name) {
 		try {
 			if (extension.equalsIgnoreCase("gif")) {
 				gifCache.put(name, url);
@@ -43,7 +45,9 @@ public class Memecatch implements Listener {
 		cacheImage("http://i.imgur.com/oI2zYZq.png", "png", "facepalm");
 		cacheImage("http://i.imgur.com/Kr1FTJ6.jpg", "jpg", "Questionmark");
 		cacheImage("http://i.imgur.com/uQvNaYi.jpg", "jpg", "bye");
-
+		cacheImage("http://itsfanart.com/gallery3/var/albums/misc/gwalla/album11/act.jpg", "jpg", "cares");
+		cacheImage("http://vignette2.wikia.nocookie.net/vsbattles/images/a/ac/Yukiteru_Amano.jpg", "jpg", "yukki");
+		
 		// Random memes \\
 		cacheImage("http://i.imgur.com/zvbc5Fx.jpg", "jpg", "christians");
 		cacheImage("http://i.imgur.com/ukKUzHv.jpg", "jpg", "bachelors");
@@ -56,5 +60,15 @@ public class Memecatch implements Listener {
 		// Gifs \\
 		cacheImage("http://bit.ly/22xKWHr", "gif", "dinnertime");
 		cacheImage("http://imgur.com/LVuY8k9", "gif", "shocked");
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File("pictures.txt")));
+			String line = "";
+			while((line=br.readLine()) != null) {
+				String[] another = line.split("!");
+				cacheImage(another[0], another[1], another[2]);
+			}
+			br.close();
+		} catch (Exception e) {}
 	}
 }

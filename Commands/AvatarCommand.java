@@ -53,7 +53,6 @@ public class AvatarCommand implements MessageCreateListener{
 				ex.printStackTrace();
 			}
 		} catch (InterruptedException | ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

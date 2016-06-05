@@ -1,5 +1,6 @@
 package Commands;
 
+import Permissions.UsersList;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.listener.message.MessageCreateListener;
@@ -25,8 +26,14 @@ public class StopCommand implements MessageCreateListener {
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
 				if (args[0].equalsIgnoreCase("stop")) {
-					message.getChannelReceiver().sendMessage("My phone didn't predict this...");
-					System.exit(0);
+					if (UsersList.getUsers(message.getAuthor())) {
+						message.getChannelReceiver().sendMessage("My phone didn't predict this...");
+						try {
+							java.util.concurrent.TimeUnit.MILLISECONDS.sleep((long) 1000);
+						} catch (InterruptedException e) {
+						}
+						System.exit(0);
+					}
 				}
 			}
 		}

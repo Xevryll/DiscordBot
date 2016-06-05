@@ -10,7 +10,7 @@ import de.btobastian.javacord.listener.message.MessageCreateListener;
 
 public class MuteCommand implements MessageCreateListener {
 
-	static ArrayList<User> muted = new ArrayList<User>();
+	public static ArrayList<User> muted = new ArrayList<User>();
 	
 	@Override
 	public void onMessageCreate(DiscordAPI api, Message message) {
