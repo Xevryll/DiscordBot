@@ -29,19 +29,14 @@ public class MuteAllCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if(args[0].equalsIgnoreCase("muteall")) {
+				if(args[0].equalsIgnoreCase("/$muteall")) {
 					if(UsersList.getUsers(message.getAuthor())) {
 						Message m = null;
 						try {
 							m = message.getChannelReceiver().sendMessage("Muting...").get();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (ExecutionException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						} catch (InterruptedException e) {} catch (ExecutionException e) {}
 						Channel c = message.getChannelReceiver();
+						@SuppressWarnings("unused")
 						String g = "Muted List";
 						int am = 0;
 						for(User u : c.getServer().getMembers()) {

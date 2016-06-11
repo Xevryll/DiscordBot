@@ -1,4 +1,5 @@
 package Memes;
+
 import de.btobastian.javacord.listener.Listener;
 
 import javax.imageio.ImageIO;
@@ -6,8 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -17,20 +16,17 @@ public class Memecatch implements Listener {
 	public static HashMap<String, String> gifCache = new HashMap<>();
 
 	public synchronized static void cacheImage(String url, String extension, String name) {
+		if (extension.equalsIgnoreCase("gif")) {
+			gifCache.put(name, url);
+			return;
+		}
 		try {
-			if (extension.equalsIgnoreCase("gif")) {
-				gifCache.put(name, url);
-				return;
-			}
 			File imgf = new File(name + "." + extension);
 			BufferedImage img = ImageIO.read(new URL(url));
 			ImageIO.write(img, extension, imgf);
 			imageCache.put(name, imgf);
-
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Was not able to load image " + name);
 		}
 	}
 
@@ -47,6 +43,7 @@ public class Memecatch implements Listener {
 		cacheImage("http://i.imgur.com/uQvNaYi.jpg", "jpg", "bye");
 		cacheImage("http://itsfanart.com/gallery3/var/albums/misc/gwalla/album11/act.jpg", "jpg", "cares");
 		cacheImage("http://vignette2.wikia.nocookie.net/vsbattles/images/a/ac/Yukiteru_Amano.jpg", "jpg", "yukki");
+		cacheImage("http://i.imgur.com/dqS2b1Q.jpg", "jpg", "jinx");
 		
 		// Random memes \\
 		cacheImage("http://i.imgur.com/zvbc5Fx.jpg", "jpg", "christians");
@@ -60,15 +57,21 @@ public class Memecatch implements Listener {
 		// Gifs \\
 		cacheImage("http://bit.ly/22xKWHr", "gif", "dinnertime");
 		cacheImage("http://imgur.com/LVuY8k9", "gif", "shocked");
-		
+
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(new File("pictures.txt")));
 			String line = "";
-			while((line=br.readLine()) != null) {
-				String[] another = line.split("!");
-				cacheImage(another[0], another[1], another[2]);
+			while ((line = br.readLine()) != null) {
+				try {
+					String[] another = line.split("!");
+					cacheImage(another[0], another[1], another[2]);
+
+				} catch (Exception e) {
+					continue;
+				}
 			}
 			br.close();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 	}
 }

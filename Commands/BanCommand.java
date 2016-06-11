@@ -25,7 +25,7 @@ public class BanCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("ban")) {
+				if (args[0].equalsIgnoreCase("/$ban")) {
 					if (UsersList.getUsers(message.getAuthor())) {
 						message.getChannelReceiver().getServer().banUser(message.getMentions().get(0));
 						message.getChannelReceiver().sendMessage(message.getAuthor().getMentionTag() + " has banned " + message.getMentions().get(0).getMentionTag() + " from the server!");

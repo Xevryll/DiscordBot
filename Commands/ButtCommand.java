@@ -24,7 +24,7 @@ public class ButtCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("butt")) {
+				if (args[0].equalsIgnoreCase("/$butt")) {
 					message.getChannelReceiver().sendMessage("http://i.imgur.com/7E5xfrL.jpg");
 				} 
 			}

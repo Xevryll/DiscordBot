@@ -25,7 +25,7 @@ public class CaresCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if(args[0].equalsIgnoreCase("cares")) {
+				if(args[0].equalsIgnoreCase("/$cares")) {
 					message.getChannelReceiver().sendFile(Memecatch.imageCache.get("cares"));
 				}
 			}

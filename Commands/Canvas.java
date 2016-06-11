@@ -22,6 +22,7 @@ public class Canvas implements MessageCreateListener {
 		}
 		
 		
+		@SuppressWarnings("unused")
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {

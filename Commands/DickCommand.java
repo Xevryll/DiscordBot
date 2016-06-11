@@ -31,7 +31,7 @@ public class DickCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("dicksize")) {
+				if (args[0].equalsIgnoreCase("/$dicksize")) {
 					User u1 = message.getMentions().get(0);
 					Random r = new Random();
 					int i = r.nextInt(25);

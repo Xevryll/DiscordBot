@@ -24,9 +24,10 @@ public class SpamCommand implements MessageCreateListener {
 		
 		
 		String[] args = message.getContent().split(" ");
+		
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("spam")) {
+				if (args[0].equalsIgnoreCase("/$spam")) {
 					if (UsersList.getUsers(message.getAuthor())) {
 						int amount = Integer.valueOf(args[1]);
 						User u = message.getMentions().get(0);

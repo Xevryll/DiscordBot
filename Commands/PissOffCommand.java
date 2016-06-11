@@ -25,7 +25,7 @@ public class PissOffCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("pissuoff")) {
+				if (args[0].equalsIgnoreCase("/$pissuoff")) {
 					if (UsersList.getUsers(message.getAuthor())) {
 						String temp = "";
 						args[0] = "";

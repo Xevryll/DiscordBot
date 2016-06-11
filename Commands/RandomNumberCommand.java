@@ -26,7 +26,7 @@ public class RandomNumberCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				 if (args[0].equalsIgnoreCase("rnd")) {
+				 if (args[0].equalsIgnoreCase("/$rnd")) {
 					Random rand = new Random();
 					message.getChannelReceiver()
 							.sendMessage(message.getAuthor().getMentionTag() + " has rolled the random number "

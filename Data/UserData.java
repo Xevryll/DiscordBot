@@ -1,4 +1,6 @@
 package Data;
+import java.util.ArrayList;
+
 import de.btobastian.javacord.entities.User;
 
 public class UserData {
@@ -8,6 +10,7 @@ public class UserData {
 	private int mentioned;
 	private int commandsRan;
 	private int muted;
+	private ArrayList<String> permissions = new ArrayList<String>();
 
 	public UserData(User user) {
 		this.user = user;
@@ -55,6 +58,14 @@ public class UserData {
 	
 	public int getMuted() {
 		return muted;
+	}
+	
+	public ArrayList<String> getPerms() {
+		return permissions;
+	}
+	
+	public void addPerms(String perm) {
+		permissions.add(perm);
 	}
 
 }

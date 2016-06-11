@@ -25,9 +25,9 @@ public class JoinCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if(args[0].equalsIgnoreCase("joinserver")) {
+				if(args[0].equalsIgnoreCase("/$joinserver")) {
 					message.getChannelReceiver().sendMessage("Here is the link to invite me to"
-							+ "your server https://discordapp.com/oauth2/authorize?client_id=185912023228481539&scope=bot");
+							+ "your server https://discordapp.com/oauth2/authorize?client_id=185912023228481539&scope=bot&permissions=0");
 				}
 			}
 		}

@@ -21,7 +21,7 @@ public class UserLoopCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if(args[0].equalsIgnoreCase("loopt")) {
+				if(args[0].equalsIgnoreCase("/$loopt")) {
 					try {
 						Message m = message.reply("Debug: ").get();
 						for (int i=0; i<=2; i++) {

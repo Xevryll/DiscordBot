@@ -22,7 +22,7 @@ public class ChangeNameCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("changename")) {
+				if (args[0].equalsIgnoreCase("/$changename")) {
 					if (UsersList.getUsers(message.getAuthor())) {
 						String temp = "";
 						args[0] = "";

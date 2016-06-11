@@ -1,9 +1,6 @@
 package Memes;
-
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -33,7 +30,7 @@ public class AddImagesCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if(args[0].equalsIgnoreCase("ci")) {
+				if(args[0].equalsIgnoreCase("/$ci")) {
 					if(UsersList.getUsers(message.getAuthor())) {
 						message.getChannelReceiver().sendMessage("Attempting to add new image...");
 						File f = new File("pictures.txt");
@@ -41,6 +38,11 @@ public class AddImagesCommand implements MessageCreateListener {
 						try {
 							br = new BufferedWriter(new FileWriter(f, true));
 						} catch (Exception e) {}
+						
+						if(Memecatch.imageCache.containsKey(args[3])) {
+							message.getChannelReceiver().sendMessage("Command already present");
+							return;
+						}
 						
 						if(br!=null) {
 							try {

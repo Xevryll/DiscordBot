@@ -22,7 +22,7 @@ public class SayCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("say")) {
+				if (args[0].equalsIgnoreCase("/$say")) {
 					if (UsersList.getUsers(message.getAuthor())) {
 						String temp = "";
 						args[0] = "";

@@ -1,9 +1,11 @@
 package Commands;
 
+import Data.DataHolder;
 import Data.UserData;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;
+import de.btobastian.javacord.entities.permissions.Role;
 import de.btobastian.javacord.listener.message.MessageCreateListener;
 
 public class InfoOnCommand implements MessageCreateListener {
@@ -23,10 +25,10 @@ public class InfoOnCommand implements MessageCreateListener {
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
 				String[] args = message.getContent().split(" ");
-				if (args[0].equalsIgnoreCase("infoon")) {
+				if (args[0].equalsIgnoreCase("/$infoon")) {
 					User user = message.getMentions().get(0);
 					UserData u = null;
-					for (UserData us : MessageStatistics.data) {
+					for (UserData us : DataHolder.data) {
 						if (us.getUser().equals(user)) {
 							u = us;
 						}
@@ -39,13 +41,21 @@ public class InfoOnCommand implements MessageCreateListener {
 					} else {
 						number = u.getMessages();
 					}
-		
+					
+					String roles = "";
+					for(Role r : user.getRoles(message.getChannelReceiver().getServer())) {
+						if (!roles.contains(r.getId())) {
+							roles += roles + "\n" + r.getName() + "(" + r.getId() + ")";
+						} else {
+							message.edit("Skipped: " + r.getName());
+						}
+					}		
 					message.getChannelReceiver()
-							.sendMessage("Here is all of " + user.getMentionTag() + "'s information." + "\nName: "
+							.sendMessage("Here is all of " + message.getMentions().get(0).getMentionTag() + "'s information." + "```\nName: "
 									+ user.getName() + "\nGame: " + user.getGame() + "\nID: " + user.getId()
 									+ "\nPicture: " + user.getAvatarUrl() + "\nDiscriminator: "
 									+ user.getDiscriminator() + "\nBot: " + user.isBot() + "\nHashCode: "
-									+ user.hashCode() + "\nMessages: " + number);
+									+ user.hashCode() + "\nMessages: " + number + "\nRoles: " + roles + "```");
 				}
 			}
 		}

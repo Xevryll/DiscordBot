@@ -25,7 +25,7 @@ public class StopCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("stop")) {
+				if (args[0].equalsIgnoreCase("/$stop")) {
 					if (UsersList.getUsers(message.getAuthor())) {
 						message.getChannelReceiver().sendMessage("My phone didn't predict this...");
 						try {

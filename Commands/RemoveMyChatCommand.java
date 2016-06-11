@@ -16,7 +16,7 @@ public class RemoveMyChatCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("rbc")) {
+				if (args[0].equalsIgnoreCase("/$rbc")) {
 					int i = Integer.valueOf(args[1]);
 					int total = 0;
 					message.getChannelReceiver().sendMessage("Attempting to remove " + i + " messages.");

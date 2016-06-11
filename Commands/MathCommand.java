@@ -30,10 +30,14 @@ public class MathCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("math")) {
+				if (args[0].equalsIgnoreCase("/$math")) {
 					ScriptEngineManager mgr = new ScriptEngineManager();
 					ScriptEngine engine = mgr.getEngineByName("JavaScript");
 					String problem = args[1];
+					if(problem.contains("while")) {
+						message.getChannelReceiver().sendMessage("Nice try, dick.");
+						return;
+					}
 					problem = problem.replaceAll("pre", "" + pre);
 					try {
 						message.getChannelReceiver().sendMessage("Executing: " + problem);

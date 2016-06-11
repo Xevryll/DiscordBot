@@ -1,11 +1,10 @@
 package Commands;
 
-import Permissions.UsersList;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.listener.message.MessageCreateListener;
 
-public class KickCommand implements MessageCreateListener {
+public class ServerInfoCommand implements MessageCreateListener {
 
 	@Override
 	public void onMessageCreate(DiscordAPI api, Message message) {
@@ -25,12 +24,16 @@ public class KickCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("/$kick")) {
-					if (UsersList.getUsers(message.getAuthor())) {
-						message.getChannelReceiver().getServer().kickUser(message.getMentions().get(0));
-						message.getChannelReceiver().sendMessage(message.getAuthor().getMentionTag() + " has kicked " + message.getMentions().get(0).getMentionTag() + " from the server!");
-					}
-					
+				if(args[0].equalsIgnoreCase("/$serverinfo")) {
+					int i = message.getChannelReceiver().getServer().getRoles().size();
+					int mem = message.getChannelReceiver().getServer().getMemberCount();
+					int cha = message.getChannelReceiver().getServer().getChannels().size();
+					int vcha = message.getChannelReceiver().getServer().getVoiceChannels().size();
+					message.getChannelReceiver().sendMessage("Server Info:"
+							+ "\nUsers: " + mem
+							+ "\nNumber Of Roles: " + i
+							+ "\nChannels: " + cha
+							+ "\nVoice Channels: " + vcha);
 				}
 			}
 		}

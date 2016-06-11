@@ -24,7 +24,7 @@ public class SkuCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("sku")) {
+				if (args[0].equalsIgnoreCase("/$sku")) {
 					String temp = "";
 					args[0] = "";
 					for (int i = 0; i < args.length; i++) {

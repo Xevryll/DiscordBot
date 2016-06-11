@@ -29,7 +29,7 @@ public class AvatarCommand implements MessageCreateListener{
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("ca")) {
+				if (args[0].equalsIgnoreCase("/$ca")) {
 					if (UsersList.getUsers(message.getAuthor())) {
 						avatarShit(message.getMentions().get(0), api);
 						message.getChannelReceiver()

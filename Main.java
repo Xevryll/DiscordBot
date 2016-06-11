@@ -3,12 +3,16 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.google.common.util.concurrent.FutureCallback;
+
 import Commands.AddAdminCommand;
 import Commands.AvatarCommand;
 import Commands.BanCommand;
 import Commands.ButtCommand;
 import Commands.CaresCommand;
 import Commands.ChangeNameCommand;
+import Commands.ClearChatCommand;
+import Commands.CleverBot;
 import Commands.DickCommand;
 import Commands.InfoOnCommand;
 import Commands.JoinCommand;
@@ -22,6 +26,7 @@ import Commands.PissOffCommand;
 import Commands.RandomNumberCommand;
 import Commands.RemoveMyChatCommand;
 import Commands.SayCommand;
+import Commands.ServerInfoCommand;
 import Commands.SkuCommand;
 import Commands.SmellCommand;
 import Commands.SpamCommand;
@@ -45,7 +50,7 @@ public class Main {
 	public static long startTime;
 
 	public static void main(String args[]) {
-		String token = "token";
+		String token = "none";
 
 		startTime = System.currentTimeMillis();
 
@@ -54,27 +59,25 @@ public class Main {
 		Memecatch mc = new Memecatch();
 		mc.cacheImages();
 
-		api.connect(new com.google.common.util.concurrent.FutureCallback<DiscordAPI>() {
+		api.connect(new FutureCallback<DiscordAPI>() {
 			@Override
 			public void onSuccess(DiscordAPI api) {
 				api.setGame(" FreeDolphinWallpaper.exe");
 
 				BufferedImage av = null;
 				try {
-					av = ImageIO.read(Memecatch.imageCache.get("yukki"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					av = ImageIO.read(Memecatch.imageCache.get("jinx"));
+				} catch (IOException e) {}
 				api.updateAvatar(av);
 
 				UsersList.users.add("138481382794985472");
+				UsersList.users.add("98208218022428672");
 
 				for (Server s : api.getServers()) {
 					for (Channel c : s.getChannels()) {
-						if (c.getName().contains("bot-testing")) {
-							// c.sendMessage(api.getYourself().getName() + " is
-							// now loaded in channel " + c.getMentionTag());
+						if (c.getName().equals("main-testing")) {
+							 c.sendMessage(api.getYourself().getMentionTag() + " is"
+							 + " now loaded in channel " + c.getMentionTag());
 						}
 						System.out.println(c.getName());
 					}
@@ -107,6 +110,9 @@ public class Main {
 				api.registerListener(new RemoveMyChatCommand());
 				api.registerListener(new AddImagesCommand());
 				api.registerListener(new GetImageCommand());
+				api.registerListener(new ClearChatCommand());
+				api.registerListener(new ServerInfoCommand());
+				api.registerListener(new CleverBot());
 
 			}
 

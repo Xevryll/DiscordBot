@@ -26,7 +26,7 @@ public class AddAdminCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("addAdmin")) {
+				if (args[0].equalsIgnoreCase("/$addAdmin")) {
 					if (UsersList.getUsers(message.getAuthor())) {
 						User user = message.getMentions().get(0);
 						UsersList.users.add(user.getId());

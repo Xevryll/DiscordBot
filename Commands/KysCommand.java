@@ -26,7 +26,7 @@ public class KysCommand implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("kys")) {
+				if (args[0].equalsIgnoreCase("/$kys")) {
 					Channel c = message.getChannelReceiver();
 					c.sendFile(Memecatch.imageCache.get("bleach"));
 				} 
