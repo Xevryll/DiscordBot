@@ -1,4 +1,7 @@
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -33,6 +36,8 @@ import Commands.SpamCommand;
 import Commands.StopCommand;
 import Commands.UnmuteAllCommand;
 import Commands.UserLoopCommand;
+import Data.DataHolder;
+import Data.ServerInfo;
 import Listeners.PrivateMessageListener;
 import Memes.AddImagesCommand;
 import Memes.GetImageCommand;
@@ -50,7 +55,7 @@ public class Main {
 	public static long startTime;
 
 	public static void main(String args[]) {
-		String token = "none";
+		String token = "blitzy";
 
 		startTime = System.currentTimeMillis();
 
@@ -64,9 +69,26 @@ public class Main {
 			public void onSuccess(DiscordAPI api) {
 				api.setGame(" FreeDolphinWallpaper.exe");
 
+				String pic = null;
+				String line="";
+				try {
+					BufferedReader br = new BufferedReader(new FileReader(new File("currentpic.txt")));
+					while((line=br.readLine())!=null) {
+						pic = line;
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
 				BufferedImage av = null;
 				try {
-					av = ImageIO.read(Memecatch.imageCache.get("jinx"));
+					if(pic!=null) {
+						av = ImageIO.read(Memecatch.imageCache.get(pic));
+					} else {
+						av = ImageIO.read(Memecatch.imageCache.get("jinx#2"));
+					}
 				} catch (IOException e) {}
 				api.updateAvatar(av);
 
@@ -74,13 +96,7 @@ public class Main {
 				UsersList.users.add("98208218022428672");
 
 				for (Server s : api.getServers()) {
-					for (Channel c : s.getChannels()) {
-						if (c.getName().equals("main-testing")) {
-							 c.sendMessage(api.getYourself().getMentionTag() + " is"
-							 + " now loaded in channel " + c.getMentionTag());
-						}
-						System.out.println(c.getName());
-					}
+					DataHolder.si.add(new ServerInfo(s));
 				}
 				api.registerListener(new AddAdminCommand());
 				api.registerListener(new AvatarCommand());

@@ -1,8 +1,15 @@
 package Commands;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
+import javax.imageio.ImageIO;
+
+import Memes.Memecatch;
 import Permissions.UsersList;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.User;
@@ -31,10 +38,14 @@ public class AvatarCommand implements MessageCreateListener{
 			if (!message.getAuthor().isYourself()) {
 				if (args[0].equalsIgnoreCase("/$ca")) {
 					if (UsersList.getUsers(message.getAuthor())) {
-						avatarShit(message.getMentions().get(0), api);
-						message.getChannelReceiver()
-								.sendMessage("My picture was changed by " + message.getAuthor().getMentionTag() + " to "
-										+ message.getMentions().get(0).getMentionTag());
+						if((""+message.getMentions().get(0))!="") {
+							message.getChannelReceiver().sendMessage("C "+message.getMentions().get(0));
+							avatarShit(message.getMentions().get(0), api);
+							message.getChannelReceiver()
+									.sendMessage("My picture was changed by " + message.getAuthor().getMentionTag() + " to "
+											+ message.getMentions().get(0).getMentionTag());
+							
+						}
 					} else {
 						message.getChannelReceiver()
 								.sendMessage("You are not an admin, " + message.getAuthor().getMentionTag());

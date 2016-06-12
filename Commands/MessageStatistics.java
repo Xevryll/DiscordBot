@@ -1,6 +1,8 @@
 package Commands;
 
+import Data.ChannelInfo;
 import Data.DataHolder;
+import Data.ServerInfo;
 import Data.UserData;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
@@ -33,6 +35,19 @@ public class MessageStatistics implements MessageCreateListener {
 					dataa = new UserData(message.getAuthor());
 					DataHolder.data.add(dataa);
 					dataa.addMessages();
+				}
+				
+				for(ServerInfo s : DataHolder.si) {
+					if(s.isServer(message.getChannelReceiver().getServer())) {
+						s.totalMessages++;
+						s.totalMentions+=message.getMentions().size();
+						for(ChannelInfo c : s.channels) {
+							if(c.isChannel(message.getChannelReceiver())) {
+								c.totalMessages++;
+								c.totalMentions+=message.getMentions().size();
+							}
+						}
+					}
 				}
 			}
 
