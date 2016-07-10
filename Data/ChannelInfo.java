@@ -1,4 +1,4 @@
-package Data;
+package com.maeyrl.jinx.Data;
 
 import de.btobastian.javacord.entities.Channel;
 

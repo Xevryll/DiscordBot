@@ -1,8 +1,9 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
 import java.util.concurrent.ExecutionException;
 
-import Permissions.UsersList;
+import com.maeyrl.jinx.Permissions.UsersList;
+
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.Channel;
 import de.btobastian.javacord.entities.User;

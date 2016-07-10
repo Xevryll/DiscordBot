@@ -1,4 +1,4 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
 import java.util.Random;
 

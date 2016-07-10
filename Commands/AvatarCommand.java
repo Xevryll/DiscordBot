@@ -1,16 +1,10 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import javax.imageio.ImageIO;
+import com.maeyrl.jinx.Permissions.UsersList;
 
-import Memes.Memecatch;
-import Permissions.UsersList;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;

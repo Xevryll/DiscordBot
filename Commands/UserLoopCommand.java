@@ -1,4 +1,4 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
@@ -25,11 +25,11 @@ public class UserLoopCommand implements MessageCreateListener {
 					try {
 						Message m = message.reply("Debug: ").get();
 						for (int i=0; i<=2; i++) {
-							m.edit("┏(-_-)┓");
+							m.edit("â”�(-_-)â”“");
 							java.util.concurrent.TimeUnit.MILLISECONDS.sleep((long) 500);
-							m.edit("┏(-_-)┛");
+							m.edit("â”�(-_-)â”›");
 							java.util.concurrent.TimeUnit.MILLISECONDS.sleep((long) 500);
-							m.edit("┗(-_-﻿ )┓");
+							m.edit("â”—(-_-ï»¿ )â”“");
 							java.util.concurrent.TimeUnit.MILLISECONDS.sleep((long) 500);
 						
 						}

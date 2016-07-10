@@ -1,11 +1,12 @@
-package Memes;
+package com.maeyrl.jinx.Memes;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import Commands.MuteCommand;
-import Permissions.UsersList;
+import com.maeyrl.jinx.Commands.MuteCommand;
+import com.maeyrl.jinx.Permissions.UsersList;
+
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.listener.message.MessageCreateListener;
@@ -39,7 +40,7 @@ public class AddImagesCommand implements MessageCreateListener {
 							br = new BufferedWriter(new FileWriter(f, true));
 						} catch (Exception e) {}
 						
-						if(Memecatch.imageCache.containsKey(args[3])) {
+						if(Memecatch.imageCache.containsKey(args[3]) || Memecatch.gifCache.containsKey(args[3]) || Memecatch.vineCache.containsKey(args[3])) {
 							message.getChannelReceiver().sendMessage("Command already present");
 							return;
 						}

@@ -1,4 +1,4 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
 import com.google.code.chatterbotapi.ChatterBot;
 import com.google.code.chatterbotapi.ChatterBotFactory;
@@ -57,7 +57,7 @@ public class CleverBot implements MessageCreateListener {
 					try {
 						if (factory2 == null) {
 							factory2 = new ChatterBotFactory();
-							bot2 = factory2.create(ChatterBotType.PANDORABOTS, "cefe45904e377af0");
+							bot2 = factory2.create(ChatterBotType.PANDORABOTS, "n");
 							session2 = bot2.createSession();
 							message.getChannelReceiver().sendMessage("PandoraBot Session created.");
 						}

@@ -1,4 +1,4 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;

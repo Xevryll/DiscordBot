@@ -1,4 +1,4 @@
-package Listeners;
+package com.maeyrl.jinx.Listeners;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.listener.message.MessageCreateListener;

@@ -1,7 +1,8 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
-import Data.DataHolder;
-import Data.UserData;
+import com.maeyrl.jinx.Data.DataHolder;
+import com.maeyrl.jinx.Data.UserData;
+
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;
@@ -45,7 +46,7 @@ public class InfoOnCommand implements MessageCreateListener {
 					String roles = "";
 					for(Role r : user.getRoles(message.getChannelReceiver().getServer())) {
 						if (!roles.contains(r.getId())) {
-							roles += roles + "\n" + r.getName() + "(" + r.getId() + ")";
+							roles += r.getName() + "\n";
 						} else {
 							message.edit("Skipped: " + r.getName());
 						}

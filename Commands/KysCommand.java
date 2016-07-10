@@ -1,6 +1,7 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
-import Memes.Memecatch;
+import com.maeyrl.jinx.Memes.Memecatch;
+
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.Channel;
 import de.btobastian.javacord.entities.message.Message;

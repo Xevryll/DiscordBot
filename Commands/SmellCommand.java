@@ -1,9 +1,10 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import Data.Pussy;
+import com.maeyrl.jinx.Data.Pussy;
+
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;

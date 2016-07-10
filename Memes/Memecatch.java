@@ -1,4 +1,4 @@
-package Memes;
+package com.maeyrl.jinx.Memes;
 
 import de.btobastian.javacord.listener.Listener;
 
@@ -14,10 +14,15 @@ public class Memecatch implements Listener {
 
 	public static HashMap<String, File> imageCache = new HashMap<>();
 	public static HashMap<String, String> gifCache = new HashMap<>();
+	public static HashMap<String, String> vineCache = new HashMap<>();
 
 	public synchronized static void cacheImage(String url, String extension, String name) {
 		if (extension.equalsIgnoreCase("gif")) {
 			gifCache.put(name, url);
+			return;
+		}
+		if(extension.equalsIgnoreCase("vine")) {
+			vineCache.put(name, url);
 			return;
 		}
 		try {

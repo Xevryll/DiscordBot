@@ -1,8 +1,9 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
 import java.util.ArrayList;
 
-import Permissions.UsersList;
+import com.maeyrl.jinx.Permissions.UsersList;
+
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;

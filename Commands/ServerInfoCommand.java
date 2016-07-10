@@ -1,14 +1,16 @@
-package Commands;
+package com.maeyrl.jinx.Commands;
 
-import Data.ChannelInfo;
-import Data.DataHolder;
-import Data.ServerInfo;
+import com.maeyrl.jinx.Data.ChannelInfo;
+import com.maeyrl.jinx.Data.DataHolder;
+import com.maeyrl.jinx.Data.ServerInfo;
+
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.listener.message.MessageCreateListener;
 
 public class ServerInfoCommand implements MessageCreateListener {
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void onMessageCreate(DiscordAPI api, Message message) {
 

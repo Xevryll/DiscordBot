@@ -1,4 +1,4 @@
-package Data;
+package com.maeyrl.jinx.Data;
 import java.util.ArrayList;
 
 import de.btobastian.javacord.entities.User;

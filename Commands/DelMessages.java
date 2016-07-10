@@ -7,12 +7,11 @@ import java.util.concurrent.Future;
 import com.maeyrl.jinx.Permissions.UsersList;
 
 import de.btobastian.javacord.DiscordAPI;
-import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.entities.message.MessageHistory;
 import de.btobastian.javacord.listener.message.MessageCreateListener;
 
-public class ClearChatCommand implements MessageCreateListener {
+public class DelMessages implements MessageCreateListener {
 
 	@Override
 	public void onMessageCreate(DiscordAPI api, Message message) {
@@ -20,41 +19,35 @@ public class ClearChatCommand implements MessageCreateListener {
 		if (message.getAuthor().equals(api.getYourself())) {
 			return;
 		}
-		
 
-		
-		if (MuteCommand.muted.contains(message.getAuthor())) {
-			message.delete();
-			return;
-		}
-		
-		
 		String[] args = message.getContent().split(" ");
 		if (!(message.isPrivateMessage())) {
 			if (!message.getAuthor().isYourself()) {
-				if (args[0].equalsIgnoreCase("/$cc")) {
+				if (args[0].equalsIgnoreCase("/$lso")) {
 					if (UsersList.getUsers(message.getAuthor())) {
-						message.getChannelReceiver().sendMessage("Trying to remove " + Integer.valueOf(args[2]));
-						User u = message.getMentions().get(0);
-						Future<MessageHistory> msg = message.getChannelReceiver()
-								.getMessageHistory(Integer.valueOf(args[2]));
+						Future<MessageHistory> messages = message.getChannelReceiver()
+								.getMessageHistory(Integer.valueOf(args[1]));
+						int i = 0;
 						try {
-							Iterator<Message> i = msg.get().iterator();
-							while (i.hasNext()) {
-								Message m = (Message) i.next();
-								if (m.getAuthor().equals(u)) {
+							Iterator t = messages.get().iterator();
+							while (t.hasNext()) {
+								Message m = (Message) t.next();
+								if (m.getAuthor() == message.getMentions().get(0)) {
 									m.delete();
+									i++;
 								}
 							}
-						} catch (InterruptedException e) {
-						} catch (ExecutionException e) {
+						} catch (InterruptedException | ExecutionException e) {
+							e.printStackTrace();
 						}
-						
+						message.getChannelReceiver().sendMessage(i + " were attempted to be removed. If any "
+								+ "weren't removed, it is due to a lack of permissions.");
+
 					}
 				}
 			}
 		}
-		
+
 	}
 
 }

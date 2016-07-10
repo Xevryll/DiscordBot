@@ -1,4 +1,4 @@
-package Data;
+package com.maeyrl.jinx.Data;
 
 public class Pussy {
 	private String id;

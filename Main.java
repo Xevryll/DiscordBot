@@ -1,63 +1,62 @@
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import com.google.common.util.concurrent.FutureCallback;
+import com.maeyrl.jinx.Commands.AddAdminCommand;
+import com.maeyrl.jinx.Commands.AvatarCommand;
+import com.maeyrl.jinx.Commands.BFD;
+import com.maeyrl.jinx.Commands.BanCommand;
+import com.maeyrl.jinx.Commands.BotInfo;
+import com.maeyrl.jinx.Commands.ButtCommand;
+import com.maeyrl.jinx.Commands.CaresCommand;
+import com.maeyrl.jinx.Commands.ChangeNameCommand;
+import com.maeyrl.jinx.Commands.ClearChatCommand;
+import com.maeyrl.jinx.Commands.CleverBot;
+import com.maeyrl.jinx.Commands.DelMessages;
+import com.maeyrl.jinx.Commands.DickCommand;
+import com.maeyrl.jinx.Commands.HelpCommand;
+import com.maeyrl.jinx.Commands.InfoOnCommand;
+import com.maeyrl.jinx.Commands.JoinCommand;
+import com.maeyrl.jinx.Commands.KickCommand;
+import com.maeyrl.jinx.Commands.KysCommand;
+import com.maeyrl.jinx.Commands.LSCommand;
+import com.maeyrl.jinx.Commands.LSer;
+import com.maeyrl.jinx.Commands.ListImages;
+import com.maeyrl.jinx.Commands.MathCommand;
+import com.maeyrl.jinx.Commands.MessageStatistics;
+import com.maeyrl.jinx.Commands.MuteAllCommand;
+import com.maeyrl.jinx.Commands.MuteCommand;
+import com.maeyrl.jinx.Commands.PissOffCommand;
+import com.maeyrl.jinx.Commands.QuoteCommand;
+import com.maeyrl.jinx.Commands.RandomNumberCommand;
+import com.maeyrl.jinx.Commands.RemoveMyChatCommand;
+import com.maeyrl.jinx.Commands.SayCommand;
+import com.maeyrl.jinx.Commands.ScreenshotCommand;
+import com.maeyrl.jinx.Commands.ServerInfoCommand;
+import com.maeyrl.jinx.Commands.SkuCommand;
+import com.maeyrl.jinx.Commands.SmellCommand;
+import com.maeyrl.jinx.Commands.SpamCommand;
+import com.maeyrl.jinx.Commands.UnmuteAllCommand;
+import com.maeyrl.jinx.Commands.UptimeCommand;
+import com.maeyrl.jinx.Commands.UserLoopCommand;
+import com.maeyrl.jinx.Data.DataHolder;
+import com.maeyrl.jinx.Data.ServerInfo;
+import com.maeyrl.jinx.Listeners.PrivateMessageListener;
+import com.maeyrl.jinx.Memes.AddImagesCommand;
+import com.maeyrl.jinx.Memes.GetImageCommand;
+import com.maeyrl.jinx.Memes.Memecatch;
+import com.maeyrl.jinx.Permissions.UsersList;
 
-import Commands.AddAdminCommand;
-import Commands.AvatarCommand;
-import Commands.BanCommand;
-import Commands.ButtCommand;
-import Commands.CaresCommand;
-import Commands.ChangeNameCommand;
-import Commands.ClearChatCommand;
-import Commands.CleverBot;
-import Commands.DickCommand;
-import Commands.InfoOnCommand;
-import Commands.JoinCommand;
-import Commands.KickCommand;
-import Commands.KysCommand;
-import Commands.MathCommand;
-import Commands.MessageStatistics;
-import Commands.MuteAllCommand;
-import Commands.MuteCommand;
-import Commands.PissOffCommand;
-import Commands.RandomNumberCommand;
-import Commands.RemoveMyChatCommand;
-import Commands.SayCommand;
-import Commands.ServerInfoCommand;
-import Commands.SkuCommand;
-import Commands.SmellCommand;
-import Commands.SpamCommand;
-import Commands.StopCommand;
-import Commands.UnmuteAllCommand;
-import Commands.UserLoopCommand;
-import Data.DataHolder;
-import Data.ServerInfo;
-import Listeners.PrivateMessageListener;
-import Memes.AddImagesCommand;
-import Memes.GetImageCommand;
-import Memes.Memecatch;
-import Permissions.UsersList;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.Javacord;
-import de.btobastian.javacord.entities.Channel;
 import de.btobastian.javacord.entities.Server;
 
 public class Main {
 
 	public static DiscordAPI api;
 
-	public static long startTime;
-
 	public static void main(String args[]) {
-		String token = "blitzy";
+		String token = null;
 
-		startTime = System.currentTimeMillis();
+		DataHolder.startTime = System.currentTimeMillis();
 
 		api = Javacord.getApi(token, true);
 
@@ -67,30 +66,7 @@ public class Main {
 		api.connect(new FutureCallback<DiscordAPI>() {
 			@Override
 			public void onSuccess(DiscordAPI api) {
-				api.setGame(" FreeDolphinWallpaper.exe");
-
-				String pic = null;
-				String line="";
-				try {
-					BufferedReader br = new BufferedReader(new FileReader(new File("currentpic.txt")));
-					while((line=br.readLine())!=null) {
-						pic = line;
-					}
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-				
-				BufferedImage av = null;
-				try {
-					if(pic!=null) {
-						av = ImageIO.read(Memecatch.imageCache.get(pic));
-					} else {
-						av = ImageIO.read(Memecatch.imageCache.get("jinx#2"));
-					}
-				} catch (IOException e) {}
-				api.updateAvatar(av);
+				api.setGame(" Get Jinxed!");
 
 				UsersList.users.add("138481382794985472");
 				UsersList.users.add("98208218022428672");
@@ -113,7 +89,6 @@ public class Main {
 				api.registerListener(new SayCommand());
 				api.registerListener(new SkuCommand());
 				api.registerListener(new SmellCommand());
-				api.registerListener(new StopCommand());
 				api.registerListener(new PrivateMessageListener());
 				api.registerListener(new SpamCommand());
 				api.registerListener(new BanCommand());
@@ -129,6 +104,16 @@ public class Main {
 				api.registerListener(new ClearChatCommand());
 				api.registerListener(new ServerInfoCommand());
 				api.registerListener(new CleverBot());
+				api.registerListener(new ListImages());
+				api.registerListener(new UptimeCommand());
+				api.registerListener(new ScreenshotCommand());
+				api.registerListener(new LSCommand());
+				api.registerListener(new HelpCommand());
+				api.registerListener(new QuoteCommand());
+				api.registerListener(new LSer());
+				api.registerListener(new BFD());
+				api.registerListener(new BotInfo());
+				api.registerListener(new DelMessages());
 
 			}
 
